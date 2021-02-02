@@ -66,10 +66,6 @@ const useStyles = makeStyles((theme) => ({
             justifyContent: "flex-start",
             alignItems: "center"
         }
-    },
-
-    drawer: {
-        width: "60%"
     }
 }));
 

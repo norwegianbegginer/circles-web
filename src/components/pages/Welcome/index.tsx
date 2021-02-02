@@ -13,6 +13,7 @@ import { useDispatchCommand } from "api/hooks";
 import { AccountChange, AccountInfo } from "api/commands";
 import { setCurrentAccount } from "store/actions";
 import { useHistory } from "react-router-dom";
+import Account from "api/models/Account.model";
 
 type EditableField = "label" | "first_name" | "middle_name" | "last_name" | "birthday" | "sex";
 
@@ -72,7 +73,7 @@ const Welcome = () => {
                 const account = await dispatchCommand(AccountInfo, currentAccount?.id || "", true);
 
                 if (account.status === 200) {
-                    dispatchStore(setCurrentAccount(account.data));
+                    dispatchStore(setCurrentAccount(new Account({ id: currentAccount?.id, ...account.data })));
                 }
 
                 history.push("/home");

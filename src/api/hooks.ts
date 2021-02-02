@@ -2,10 +2,11 @@ import { useRef, useEffect } from 'react';
 import { Client } from './client';
 import { useSignal } from '../utils/hooks/general';
 import config from '../config/config';
-import { IAccount, IRoom } from 'types';
+import { IRoom } from 'types';
 import { AccountInfo, RoomInfo } from './commands';
 import { useStore, useDispatch } from 'store/hooks';
 import { setCurrentAccount } from 'store/actions';
+import Account from "./models/Account.model";
 
 const HOST_URL = config.host_url;
 const cli = new Client(HOST_URL);
@@ -61,7 +62,7 @@ export const useDispatchCommand = () => {
 
 export const useAccount = (account_id?: string, updateStore: boolean = false, options?: { rooms?: boolean, flags?: boolean, contacts?: boolean }) => {
     const currentAccount = useStore(state => state.currentAccount);
-    const ref = useRef<IAccount | null | undefined>(!account_id ? currentAccount ?? undefined : undefined);
+    const ref = useRef<Account | null | undefined>(!account_id ? currentAccount ?? undefined : undefined);
     const dispatchStore = useDispatch();
     const dispatchCommand = useDispatchCommand();
     const signal = useSignal();
@@ -69,10 +70,12 @@ export const useAccount = (account_id?: string, updateStore: boolean = false, op
     useEffect(() => {
         const fn = async () => {
             const accountInfoRq = (await dispatchCommand(AccountInfo, account_id || currentAccount?.id, options?.flags, options?.rooms, options?.contacts ));
-    
+            
             if(accountInfoRq.status === 200) {
-                ref.current = accountInfoRq.data as IAccount | null;
-                if(updateStore) dispatchStore(setCurrentAccount(accountInfoRq.data));
+                const acc = new Account({ id: account_id || currentAccount?.id, ...accountInfoRq.data });
+
+                ref.current = acc as Account | null;
+                if (updateStore) dispatchStore(setCurrentAccount(acc));
                 signal();
             }
         }

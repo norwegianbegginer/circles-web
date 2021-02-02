@@ -11,6 +11,7 @@ import { useDispatchCommand } from 'api/hooks';
 import firebase from "firebase/app"
 import { useSnackbar } from "notistack";
 import { backgroundThemes } from 'utils/backgroundThemes';
+import Account from 'api/models/Account.model';
 
 const Splash = () => {
     const history = useHistory();
@@ -38,7 +39,7 @@ const Splash = () => {
             if(account_id) {
                 const accountInfo = (await dispatchCommand(AccountInfo, account_id, true, true, true));
                 if(accountInfo.status === 200) {
-                    dispatch(setCurrentAccount(accountInfo.data));
+                    dispatch(setCurrentAccount(new Account({ id: account_id, ...accountInfo.data })));
 
                     // Initialize bgTheme.
                     const bgThemeId = localStorage.getItem('background-theme') || '1922729';

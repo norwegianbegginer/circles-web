@@ -1,6 +1,6 @@
 // Deps scoped imports.
 import React, { useState } from "react";
-import { Avatar, Box, Drawer, Icon, List, ListItem, ListItemIcon, ListItemText, makeStyles, Popover, Typography } from "@material-ui/core";
+import { Avatar, Box, Icon, List, ListItem, ListItemIcon, ListItemText, makeStyles, Popover, Typography } from "@material-ui/core";
 import cx from "classnames";
 import { useDispatch, useStore } from "store/hooks";
 import { useLittera } from "react-littera";
@@ -117,12 +117,7 @@ const MenuPopover = (props: MenuPopoverProps) => {
             </Box>
         </Popover>
 
-        <Drawer anchor="right" open={shownProfileDrawer} onClose={closeProfileDrawer}>
-            <Box style={{ width: "55vw", height: "100vh", backgroundColor: "#FFF" }}>
-                <Profile />
-            </Box>
-        </Drawer>
-
+        <Profile open={shownProfileDrawer} onClose={closeProfileDrawer} onOpen={openProfileDrawer} />
         <SettingsDrawer open={shownSettingsDrawer} onClose={closeSettingsDrawer} onOpen={openSettingsDrawer} />
     </>
 }

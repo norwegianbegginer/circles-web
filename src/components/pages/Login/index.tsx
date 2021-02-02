@@ -14,6 +14,7 @@ import { AccountInfo } from "api/commands";
 import { useDispatch } from "store/hooks";
 import { setCurrentAccount } from "store/actions";
 import { useRestrictedPageForCurrentAccount } from 'utils/hooks/general';
+import Account from 'api/models/Account.model';
 
 // TODO: Translations...?
 
@@ -42,7 +43,7 @@ const Login = () => {
 
             // ! Remember account id token.
             //storageSetter("accountIdToken", accountIdToken ?? "");
-            dispatchStore(setCurrentAccount(account.data));
+            dispatchStore(setCurrentAccount(new Account({ id: result?.user?.uid, ...account.data })));
 
             if (account.data?.flags?.includes("needs_init"))
             {
