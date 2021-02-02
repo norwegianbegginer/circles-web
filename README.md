@@ -28,7 +28,7 @@ You need to clone the project.
 
 ### 3. Setup env variables
 In order to run the project and make it communicate with our development server, you have to add an `.env` file in the root.
-The content of it can be obtained on our [Discord channel called `resources`](https://discord.gg/JyPFtzPa) but it's available only for the `contributor` role.
+The content of it can be obtained on our [Discord channel called `resources`](https://discord.gg/37bPgWmR) but it's available only for the `project-circles` role.
 
 ### 4. Install dependencies
 Now just install projects dependencies like you always do. Since we use [`yarn`](https://yarnpkg.com/), please install it, if you didn't yet.
