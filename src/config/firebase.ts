@@ -2,6 +2,7 @@ import * as firebase from 'firebase/app';
  
 import 'firebase/auth';
 import 'firebase/database';
+import 'firebase/analytics';
 import 'firebase/messaging';
 
 const firebaseApp = firebase.initializeApp({
@@ -18,7 +19,8 @@ const firebaseApp = firebase.initializeApp({
 const database = firebaseApp.database();
 const auth = firebaseApp.auth();
 const messaging = firebaseApp.messaging();
+const analytics = firebaseApp.analytics();
 
 messaging.usePublicVapidKey("BFpEHR0UHDMxqVkWLbe884ukhegFUVl-SPUGpDaG2PG9BaQMr5BmNeq3BAyzMfqMD-kiJV-dwQKEDcubgNMRozw");
 
-export { messaging, database, auth, firebaseApp as app };
+export { messaging, database, auth, firebaseApp as app, analytics };
