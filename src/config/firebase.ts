@@ -28,7 +28,6 @@ messaging.usePublicVapidKey("BFpEHR0UHDMxqVkWLbe884ukhegFUVl-SPUGpDaG2PG9BaQMr5B
 export const onMessageListener = () =>
   new Promise((resolve) => {
     messaging.onMessage((payload) => {
-      console.log("FCM Listener =>", payload);
       resolve(payload);
     });
 });
