@@ -12,6 +12,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Menu popover for quick options in the upper right corner.
 - Profile view styling.
 - Button to close a room.
+- New message FCM notifications.
 
 ### Changed
 - Settings drawer will be kept mounted to avoid expensive refetching of background thumbnails.
