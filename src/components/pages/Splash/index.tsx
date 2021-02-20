@@ -54,27 +54,28 @@ const Splash = () => {
                         // TODO: Find a better place for this!
                         const messaging = firebase?.messaging();
                         if(messaging && accountInfo.data) {
-                          messaging?.requestPermission()
-                            .then(async function() {
-                              const token = await messaging.getToken();
-                    
-                              if((!accountInfo.data?.tokens || !accountInfo.data?.tokens?.includes(token))) {
-                                
-                                  let newTokens = accountInfo.data?.tokens ?? [];
-                                  newTokens.push(token);
-                    
-                                  await dispatchCommand(AccountChange, accountInfo.data?.id, { tokens: newTokens })
-                              }
-                    
-                              console.log(token);
-                            })
-                            .catch(function(err) {
-                              console.log("Unable to get permission to notify.", err);
+                            Notification.requestPermission()
+                                .then(async function() {
+                                    const token = await messaging.getToken();
+                            
+                                    if((!accountInfo.data?.tokens || !accountInfo.data?.tokens?.includes(token))) {
+                                        
+                                        let newTokens = accountInfo.data?.tokens ?? [];
+                                        newTokens.push(token);
+                            
+                                        await dispatchCommand(AccountChange, accountInfo.data?.id, { tokens: newTokens })
+
+                                        console.log("ℹ️ New messaging token added.");
+                                    }
+                                })
+                                .catch(function(err) {
+                                    console.log("Unable to get permission to notify.", err);
+                                });
+
+                            navigator.serviceWorker.addEventListener("message", (message) => {
+                                enqueueSnackbar(message?.data?.["firebase-messaging-msg-data"]?.notification?.body);
+                                console.log(message);
                             });
-                          navigator.serviceWorker.addEventListener("message", (message) => {
-                            enqueueSnackbar(message?.data?.["firebase-messaging-msg-data"]?.notification?.body);
-                            console.log(message);
-                          });
                         }
 
                         // Navigate to initial path or fallback to home.
