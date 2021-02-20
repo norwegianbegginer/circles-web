@@ -25,4 +25,11 @@ const performance = firebase.performance();
 
 messaging.usePublicVapidKey("BFpEHR0UHDMxqVkWLbe884ukhegFUVl-SPUGpDaG2PG9BaQMr5BmNeq3BAyzMfqMD-kiJV-dwQKEDcubgNMRozw");
 
+export const onMessageListener = () =>
+  new Promise((resolve) => {
+    messaging.onMessage((payload) => {
+      resolve(payload);
+    });
+});
+
 export { messaging, database, auth, firebaseApp as app, analytics, performance };
