@@ -4,6 +4,7 @@ import 'firebase/auth';
 import 'firebase/database';
 import 'firebase/analytics';
 import 'firebase/messaging';
+import "firebase/performance";
 
 const firebaseApp = firebase.initializeApp({
   apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
@@ -20,7 +21,8 @@ const database = firebaseApp.database();
 const auth = firebaseApp.auth();
 const messaging = firebaseApp.messaging();
 const analytics = firebaseApp.analytics();
+const performance = firebase.performance();
 
 messaging.usePublicVapidKey("BFpEHR0UHDMxqVkWLbe884ukhegFUVl-SPUGpDaG2PG9BaQMr5BmNeq3BAyzMfqMD-kiJV-dwQKEDcubgNMRozw");
 
-export { messaging, database, auth, firebaseApp as app, analytics };
+export { messaging, database, auth, firebaseApp as app, analytics, performance };
