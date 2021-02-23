@@ -6,34 +6,42 @@ export const signInWithPopup = async () => {
     return new Promise((resolve, reject) => {
         var provider = new firebase.auth.GoogleAuthProvider();
         provider.addScope('https://www.googleapis.com/auth/contacts.readonly');
-        
-       firebase.auth().signInWithPopup(provider).then(function(result) {
-            fetchAccountIdToken();
-            resolve(result);
-          }).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            console.log("🔒 Authorization =>", errorCode, errorMessage);
-            reject(error);
-            // ...
-          });
-          
+
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+                return firebase.auth().signInWithPopup(provider);
+            })
+            .then(function (result) {
+                fetchAccountIdToken();
+                resolve(result);
+            })
+            .catch((error) => {
+                // Handle Errors here.
+                var errorCode = error.code;
+                var errorMessage = error.message;
+                console.log("🔒 Authorization =>", errorCode, errorMessage);
+                reject(error);
+            });
+
     });
 }
 
 export const signInWithCredentials = async (email: string, password: string) => {
     return new Promise((resolve, reject) => {
-       firebase.auth().signInWithEmailAndPassword(email, password)
+        firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL)
+            .then(() => {
+                return firebase.auth().signInWithEmailAndPassword(email, password);
+            })
             .then((result) => {
                 fetchAccountIdToken();
                 resolve(result);
             })
             .catch((error) => {
-                var errorCode = error.code;
-                var errorMessage = error.message;
-                console.log("🔒 Authorization =>", errorCode, errorMessage);
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log("🔒 Authorization =>", errorCode, errorMessage);
                 reject(error);
-                // ...
             });
     });
 }
@@ -42,8 +50,7 @@ export const fetchAccountIdToken = () => {
     const currentUser = firebase.auth()?.currentUser ?? null;
 
     if(currentUser)
-        currentUser.getIdToken(/* forceRefresh */ true).then(function(idToken) {
-            console.log(idToken);
+        currentUser.getIdToken(/* forceRefresh */ true).then(function (idToken) {
             setLocalStorageValue("accountIdToken", idToken);
         }).catch(function(error) {
             var errorCode = error.code;
@@ -97,7 +104,7 @@ export const getCurrentUserIdToken = async () => {
     });
 }
 
-// TODO: Implement!
+
 export const getDeviceToken = async () => {
     return new Promise<string>((resolve, reject) => {
         // Get Instance ID token. Initially this makes a network call, once retrieved
@@ -118,23 +125,3 @@ export const getDeviceToken = async () => {
   
     });
 }
-
-// export function getAccessToken() {
-//     return new Promise(function(resolve, reject) {
-//       const key = require('../placeholders/service-account.json');
-//       const jwtClient = new google.auth.JWT(
-//         key.client_email,
-//         null,
-//         key.private_key,
-//         SCOPES,
-//         null
-//       );
-//       jwtClient.authorize(function(err, tokens) {
-//         if (err) {
-//           reject(err);
-//           return;
-//         }
-//         resolve(tokens.access_token);
-//       });
-//     });
-//   }
