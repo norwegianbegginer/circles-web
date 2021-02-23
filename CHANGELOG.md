@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Profile view styling.
 - Button to close a room.
 - New message FCM notifications.
+- Friends list view.
+- Skeleton loading for list views.
+- Animations for fetched elements on Home view.
 
 ### Changed
 - Settings drawer will be kept mounted to avoid expensive refetching of background thumbnails.
