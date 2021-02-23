@@ -52,6 +52,7 @@ const reduceProps = (props: FlexProps, ...args: string[]) => {
 /**
  * A component for easier flex-box implementation.
  * @example <Flex justifyContent="space-between" alignItems="center">...</Flex>
+ * @deprecated Use Box from Material-UI instead. https://material-ui.com/components/box/
  */
 const Flex = (props: FlexProps) => {
   const reducedProps = reduceProps(props, "children", "className");
