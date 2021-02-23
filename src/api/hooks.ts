@@ -62,7 +62,7 @@ export const useDispatchCommand = () => {
 
 export const useAccount = (account_id?: string, updateStore: boolean = false, options?: { rooms?: boolean, flags?: boolean, contacts?: boolean }) => {
     const currentAccount = useStore(state => state.currentAccount);
-    const ref = useRef<Account | null | undefined>(!account_id ? currentAccount ?? undefined : undefined);
+    const ref = useRef<Account | null | undefined>(!account_id ? new Account(currentAccount as any) ?? undefined : undefined);
     const dispatchStore = useDispatch();
     const dispatchCommand = useDispatchCommand();
     const signal = useSignal();

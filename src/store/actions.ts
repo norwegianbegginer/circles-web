@@ -1,7 +1,7 @@
-import { IAccount } from "types";
 import config from "config/config";
 import { AccountInfo } from "api/commands";
 import { Client } from "api/client";
+import Account from "api/models/Account.model";
 
 const HOST_URL = config.host_url;
 const cli = new Client(HOST_URL);
@@ -11,7 +11,7 @@ const cli = new Client(HOST_URL);
  * @param payload Account info.
  * @see api/commands/AccountInfo
  */
-export const setCurrentAccount = (payload: IAccount | null) => {
+export const setCurrentAccount = (payload: Account | null) => {
     return ({ type: "SET_CURRENT_ACCOUNT", payload });
 }
 
@@ -22,8 +22,7 @@ export const setCurrentAccount = (payload: IAccount | null) => {
  */
 export const updateCurrentAccount = async (account_id: string) => {
     const rq = await cli.execute(new AccountInfo(account_id, true, true, true))
-
-    const payload: IAccount = rq.data;
+    const payload = new Account(rq.data);
 
     return ({ type: "SET_CURRENT_ACCOUNT", payload });
 }

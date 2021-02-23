@@ -1,12 +1,12 @@
-import Account from "api/models/Account.model";
 import React from "react";
+import { IAccount } from "types";
 
 export interface IPreferences {
     backgroundTheme: { id: string, url: string, label: string }
 }
 
 export interface IState {
-    currentAccount?: Account;
+    currentAccount?: IAccount;
     preferences: Partial<IPreferences> | {};
 }
 
