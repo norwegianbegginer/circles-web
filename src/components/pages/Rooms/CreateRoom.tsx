@@ -61,7 +61,7 @@ const CreateRoom = () => {
     const isSubmitDisabled = label.length === 0 || selected.length === 0 || loading;
 
     return <div>
-        <Button variant="contained" onClick={handleClickOpen} className={classes.roomsButton}>{translated.conversation}</Button>
+      <Button variant="contained" disableElevation onClick={handleClickOpen} className={classes.roomsButton}>{translated.conversation}</Button>
         
         <Dialog fullWidth onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
           <DialogTitle id="customized-dialog-title">

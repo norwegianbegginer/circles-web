@@ -25,7 +25,7 @@ const TopMenu = (props: TopMenuProps) => {
         history.push(path)
 
     return <section className={classes.root} style={props.style}>
-        <Logo style={{ fontSize: "56px", margin: "16px 0" }} onClick={handleNavigation('/home/highlights')} />
+        <Logo style={{ fontSize: "56px", margin: "16px 0" }} onClick={handleNavigation('/home/rooms')} />
         <Flex justifyContent="flex-end" alignItems="center" className={classes.menuBar}>
             <MenuPopover />
         </Flex>

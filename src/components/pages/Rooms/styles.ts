@@ -8,39 +8,39 @@ const useStyles = makeStyles((theme) => ({
     topMenu: {
         display: "flex",
     },
-    listWrapper: {
-        position: "relative",
-        overflowY: "scroll",
-        width: "100%",
-        height: "calc(100% - 100px)",
-    },
-    roomWrapper: {
-        position: "relative",
-        margin: "auto 10px auto 0",
-        width: "385px",
-        backgroundColor: "#fff",
-        boxShadow: "7px 11px 15px rgba(0, 0, 0, .25)",
-        borderRadius: "20px",
-        height: "80vh",
-        overflow: "hidden",
-        minWidth: "296px",
-        transition: "all 255ms ease"
-    },
-    roomWrapperExpanded: {
-        margin: "auto 0px auto 0",
-        width: "385px",
-        boxShadow: "7px 11px 15px rgba(0, 0, 0, .25)",
-        borderRadius: "20px 0px 0 20px",
-        height: "100%",
-        minWidth: "296px",
-    },
+    // listWrapper: {
+    //     position: "relative",
+    //     overflowY: "scroll",
+    //     width: "100%",
+    //     height: "calc(100% - 100px)",
+    // },
+    // roomWrapper: {
+    //     position: "relative",
+    //     margin: "auto 10px auto 0",
+    //     width: "385px",
+    //     backgroundColor: "#fff",
+    //     boxShadow: "7px 11px 15px rgba(0, 0, 0, .25)",
+    //     borderRadius: "20px",
+    //     height: "80vh",
+    //     overflow: "hidden",
+    //     minWidth: "296px",
+    //     transition: "all 255ms ease"
+    // },
+    // roomWrapperExpanded: {
+    //     margin: "auto 0px auto 0",
+    //     width: "385px",
+    //     boxShadow: "7px 11px 15px rgba(0, 0, 0, .25)",
+    //     borderRadius: "20px 0px 0 20px",
+    //     height: "100%",
+    //     minWidth: "296px",
+    // },
     roomsButton: {
         display: "block",
         width: "100%",
         height: "100px",
         backgroundColor: "#fff",
         borderRadiusBottom: "1px solid #eee",
-        borderRadius: "0px",
+        borderRadius: "0px"
     },
     roomItemWrapper: {
         overflow: "hidden",

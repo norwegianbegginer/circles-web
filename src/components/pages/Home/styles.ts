@@ -1,7 +1,7 @@
 import { makeStyles } from "@material-ui/core";
 
-const sidebarWidth = 114;
-const sidebarMargin = 20;
+const sidebarWidth = 86;
+const sidebarMargin = 14;
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
         marginRight: sidebarMargin,
         height: "100vh",
         padding: "15px 0",
-        background: "linear-gradient(to right, rgba(0, 0, 0, 0.35), transparent)"
+        background: "linear-gradient(to right, rgba(0, 0, 0, 0.3), transparent)"
     },
     backgroundImage: {
         backgroundPosition: "center",

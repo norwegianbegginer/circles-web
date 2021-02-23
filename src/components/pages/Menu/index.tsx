@@ -1,23 +1,34 @@
-import React, { useState } from 'react';
-import MenuIcon from '@material-ui/icons/Menu';
-import MenuOpenIcon from '@material-ui/icons/MenuOpen';
+import React from "react";
+import cx from "classnames";
 import useStyles from "./styles";
+import { Box, IconButton } from "@material-ui/core";
+import PeopleIcon from "@material-ui/icons/People";
+import ChatIcon from "@material-ui/icons/Chat";
+import { useHistory } from "react-router-dom";
 
 const Menu = () => {
-    const classes = useStyles();
-    const [isOpenMenu, setIsOpenMenu] = useState(false);
+  const classes = useStyles();
+  const history = useHistory();
 
-    const toggleMenu = () => {
-        setIsOpenMenu(!isOpenMenu);
-    };
+  const handleNavigation = (path: string) => () => {
+    history.push(path);
+  }
 
-    return (
-        <>
-        <section onClick={toggleMenu}>
-            {isOpenMenu ? <MenuOpenIcon className={classes.menuIcon}/> : <MenuIcon className={classes.menuIcon}/>}  
-        </section>
-        </>  
-    );
+  const checkActive = (label: "people" | "rooms") => history.location.pathname.includes(label);
+
+  return (
+    <Box className={classes.menu}>
+
+      <IconButton className={cx(classes.icon, { [classes.iconActive]: checkActive("people") })} onClick={handleNavigation("/home/people")}>
+        <PeopleIcon />
+      </IconButton>
+
+      <IconButton className={cx(classes.icon, { [classes.iconActive]: checkActive("rooms") })} onClick={handleNavigation("/home/rooms")}>
+        <ChatIcon />
+      </IconButton>
+
+    </Box>
+  );
 };
 
 export default Menu;

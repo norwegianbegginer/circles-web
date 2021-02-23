@@ -1,43 +1,39 @@
-import { Avatar, Typography } from '@material-ui/core';
-import React, { useEffect, useState } from 'react';
+import { Avatar, Box, ListItem, Typography, Grow } from '@material-ui/core';
+import React from 'react';
 import { TContact } from "types";
-import { useCommand } from 'api/hooks';
-import { useForkedState } from 'utils/hooks/general';
-import { isLoaded } from 'api/utils';
-import { AccountList } from 'api/commands';
-import { useStore } from 'store/hooks';
+import { useAccount } from 'api/hooks';
 import useStyles from "./styles";
+import { Skeleton } from '@material-ui/lab';
 
 const ContactLabel = (props: TContact) => {
-    const [name, setName] = useState('')
-    const [avatar, setAvatar] = useState('')
     const classes = useStyles();
+    const account = useAccount(props.account_id);
 
-    const currentAccount = useStore(state => state.currentAccount);
+    const handleClick = () => {
+        // TODO: Open existing chat or create a new room. (1 on 1)
+        console.warn("TODO: Open existing chat or create a new room. (1 on 1)");
+    }
 
-    const accountsRq = useCommand(AccountList, currentAccount?.friends?.map(friend => friend.account_id));
-    const [accounts] = useForkedState(rq => isLoaded(rq) ? rq.data : null, accountsRq)
-
-    useEffect(() => {
-        accounts?.forEach((account : any) => {
-            if(account.id === props.account_id) {
-                return (
-                    setName(`${account.name} ${account.surname}`),
-                    setAvatar(account.avatar_url)
-                )
-            }
-        })
-    })
-
-    console.log(currentAccount, accounts,  props.account_id);
+    if (!account)
+        return <Box className={classes.personData}>
+            <Skeleton variant="rect" width={160} height={28} />
+            <Skeleton variant="circle" width={48} height={48} />
+        </Box>; 
 
     return (
-        <section className={classes.personData}>
-            <Avatar className={classes.avatar} alt="user" src={avatar}/>
-            <Typography color={props.favorite ? "primary" : "initial"}>
-                {name}
-            </Typography>
-        </section>    
+        <ListItem onClick={handleClick}>
+            <Grow in>
+                <Box className={classes.personData}>
+                    <Box>
+                        <Typography variant="h6" style={{ fontSize: "20px" }}>
+                            {account.name()}
+                        </Typography>
+                        <Typography className={classes.subtitle}>{account.label}</Typography>
+                    </Box>
+                    <Avatar className={classes.avatar} alt={account.name()} src={account.avatar_url} />
+                </Box>
+            </Grow>
+        </ListItem>    
     );
 };
 

@@ -38,7 +38,7 @@ const RoomView = () => {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [reducedRoomMembers.length]);
 
-    const closeRoomView = () => {history.push("/home/highlights");}
+    const closeRoomView = () => {history.push("/home/rooms");}
 
     return <Box className={classes.root}>
         {(!room || !room.id) ?
@@ -50,8 +50,7 @@ const RoomView = () => {
                         <Box>
                             <IconButton onClick={() => closeRoomView()} >
                                 <ArrowBackIcon style={{fontSize: "1.8rem"}}/>
-                            </IconButton>
-                            
+                            </IconButton>   
                         </Box>
                         <Box>
                             <Typography variant="h5" className={classes.roomTitle}>{roomName}</Typography>
@@ -59,7 +58,6 @@ const RoomView = () => {
                         </Box>      
                     </Box>
                 </Box>
-            
                 <Box>
                     <Messages accounts={room?.accounts ?? []} roomId={room.id} />
                     <MessageForm onSubmit={submitMessage} />

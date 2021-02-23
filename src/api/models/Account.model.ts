@@ -37,6 +37,12 @@ class Account {
 
         return include.map(inc => this?.details?.[inc] ?? null).filter(inc => !!inc).join(" ") ?? this.label;
     }
+
+    get initials() {
+        if (!this.details.first_name && !this.details.last_name)
+            return "Unknown";
+        return (`${this.details.first_name[0]}${this.details.last_name[0]}`).toUpperCase();
+    }
 }
 
 export default Account;

@@ -16,15 +16,11 @@ function Home() {
   const classes = useStyles();
   const history = useHistory();
 
-
   // @ts-ignore
   const bgTheme = useStore(state => state?.preferences?.backgroundTheme || backgroundThemes[0])
 
-  const [isRoomsView] = useState(true);
-
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    history.push("/home/highlights");
+    history.push("/home/rooms");
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -38,14 +34,20 @@ function Home() {
           <TopMenu />
           <main className={classes.mainSection}>
             {/* new conversation and Layouts for home screen */}
-            {isRoomsView ? <RoomsLazy /> : <PeopleLazy />}
-            <Route path="/home/highlights" component={HighlightsLazy} />
-            <Route path="/home/room/:id" component={RoomLazy} /> 
+            <Route path="/home/rooms" component={RoomsLazy} />
+            <Route path="/home/people" component={PeopleLazy} />
+            <HighlightsLazy />
+            <Route path={["/home/rooms/room/:id", "/home/people/room/:id"]} component={RoomLazy} />
           </main>
         </div>
       </section>
-      <div className={classes.backgroundImageBacklit} ></div>
-      <div className={classes.backgroundImage} style={{ backgroundImage: `url(${bgTheme?.url}${window.innerWidth}x${window.innerHeight})` }} ></div>
+      <div className={classes.backgroundImageBacklit}></div>
+      <div
+        className={classes.backgroundImage}
+        style={{
+          backgroundImage: `url(${bgTheme?.url}${window.innerWidth}x${window.innerHeight})`,
+        }}
+      ></div>
     </>
   );
 }
