@@ -24,18 +24,20 @@ const Highlights = () => {
 
   return (
     <Box className={classes.root}>
-      <Box className={classes.welcomeWraper}>
-        <Box className={classes.welcome}>
-          <Typography className={classes.greetings} variant="h2">
-            {translated.greeting}, {currentAccount?.details?.first_name}!
-          </Typography>
-          <Typography className={classes.suggestionsInfo} variant="h5">
-            {translated.suggestions}
-          </Typography>
+      <Box>
+        <Box className={classes.welcomeWraper}>
+          <Box className={classes.welcome}>
+            <Typography className={classes.greetings} variant="h2">
+              {translated.greeting}, {currentAccount?.details?.first_name}!
+            </Typography>
+            <Typography className={classes.suggestionsInfo} variant="h5">
+              {translated.suggestions}
+            </Typography>
+          </Box>
         </Box>
+        <AccountFavContacts />
+        <AccountSuggestions />
       </Box>
-      <AccountFavContacts />
-      <AccountSuggestions />
     </Box>
   );
 };

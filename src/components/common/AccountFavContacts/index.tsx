@@ -1,4 +1,4 @@
-import { Avatar } from "@material-ui/core";
+import { Avatar, Zoom } from "@material-ui/core";
 import { AccountInfo } from "api/commands";
 import { useCommand } from "api/hooks";
 import { isLoaded } from "api/utils";
@@ -13,7 +13,7 @@ type AccountFavContactsProps = {
 }
 
 const AccountFavContacts = (props: AccountFavContactsProps) => {
-    const classes = useStyles();
+    const classes = useStyles(); 
 
     const currentAccount = useStore(state => state.currentAccount ?? null);
 
@@ -43,7 +43,9 @@ const AccountContactBadge = (props: AccountContactBadgeProps) => {
     const accountFullName = makeFullName(account.details?.first_name, account.details?.last_name, account.label);
     const accountInitials = makeInitials(account.details?.first_name, account.details?.last_name, account.label);
 
-    return <Avatar className={classes.image} src={account.avatar_url} alt={accountFullName}>{accountInitials}</Avatar>
+    return <Zoom in>
+        <Avatar className={classes.image} src={account.avatar_url} alt={accountFullName}>{accountInitials}</Avatar>
+    </Zoom>
 }
 
 export default AccountFavContacts

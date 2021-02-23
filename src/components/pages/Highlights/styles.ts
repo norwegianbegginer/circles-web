@@ -2,7 +2,13 @@ import { makeStyles } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-    marginRight: "10%"
+    marginRight: "10%",
+    flex: 1,
+    height: "70%",
+
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "flex-end"
     },
     welcome: {
       display: "flex",

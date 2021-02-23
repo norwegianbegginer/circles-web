@@ -15,7 +15,6 @@ import styles from "./styles";
  * Example component
  * @description This is an example component including translations and theming.
  * @version 1.0.0
- * @author Mike Eling <mike.eling97@gmail.com>
  */
 const TopMenu = (props: TopMenuProps) => {
     const classes = useStyles();

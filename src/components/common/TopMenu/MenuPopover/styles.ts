@@ -14,8 +14,18 @@ export default ((theme: Theme) => createStyles({
     },
     avatar: {
         cursor: "pointer",
+        position: "relative",
+        width: theme.spacing(10),
+        height: theme.spacing(10),
+    },
+    avatarWrapper: {
         marginLeft: "15px",
-        position: "relative"
+        borderRadius: 100,
+        borderWidth: "3px",
+        borderStyle: "solid",
+        borderColor: theme.palette.primary.main,
+        padding: 3,
+
     },
     avatarBig: {
         cursor: "pointer",

@@ -62,7 +62,8 @@ const RoomView = () => {
                     <Messages accounts={room?.accounts ?? []} roomId={room.id} />
                     <MessageForm onSubmit={submitMessage} />
                 </Box>
-            </>}
+            </>
+        }
     </Box>
 }
 

@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
         zIndex: -1,
         width: "100vw",
         height: "100vh",
-        backgroundColor: "rgba(0, 0, 0, .2)"
+        backgroundColor: "rgba(0, 0, 0, .45)"
     },
     mainSection: {
         display: "flex",

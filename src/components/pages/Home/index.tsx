@@ -36,8 +36,9 @@ function Home() {
             {/* new conversation and Layouts for home screen */}
             <Route path="/home/rooms" component={RoomsLazy} />
             <Route path="/home/people" component={PeopleLazy} />
-            <HighlightsLazy />
             <Route path={["/home/rooms/room/:id", "/home/people/room/:id"]} component={RoomLazy} />
+
+            <HighlightsLazy />
           </main>
         </div>
       </section>

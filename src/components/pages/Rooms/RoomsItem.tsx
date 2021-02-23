@@ -26,7 +26,7 @@ export const RoomsItem = (props: IRoom) => {
             <Skeleton variant="circle" width={48} height={48} />
         </Box>; 
 
-    const lastMessage = Object.values(messages)[Object.keys(messages).length - 1];
+    const lastMessage = Object.values(messages ?? {})[Object.keys(messages ?? {}).length - 1];
 
     let lastMessageValue: string | null = lastMessage?.value ?? null;
     try {
@@ -40,7 +40,7 @@ export const RoomsItem = (props: IRoom) => {
     const roomMembers = ensureArray(room?.accounts).filter(acc => acc.id !== account?.id).map(acc => new Account(acc));
     const roomName = roomMembers.length > 1 ? props.label : roomMembers[0].name();
 
-    return <ListItem onClick={handleNavigation} >
+    return <ListItem style={{ padding: 0 }} onClick={handleNavigation} >
         <Grow in>
             <Box className={classes.roomItemWrapper}>
                 <Box style={{ marginRight: "10px", maxWidth: "220px" }}>

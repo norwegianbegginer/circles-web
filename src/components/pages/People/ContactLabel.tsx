@@ -21,7 +21,7 @@ const ContactLabel = (props: TContact) => {
         </Box>; 
 
     return (
-        <ListItem onClick={handleClick}>
+        <ListItem onClick={handleClick} style={{ padding: 0 }}>
             <Grow in>
                 <Box className={classes.personData}>
                     <Box>

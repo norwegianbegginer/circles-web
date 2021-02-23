@@ -2,26 +2,25 @@
 import React, { useState } from "react";
 import { Avatar, Box, Icon, List, ListItem, ListItemIcon, ListItemText, makeStyles, Popover, Typography } from "@material-ui/core";
 import cx from "classnames";
-import { useDispatch, useStore } from "store/hooks";
+import { useDispatch } from "store/hooks";
 import { useLittera } from "react-littera";
 
 // Project scoped imports.
-import { makeFullName } from "utils/general";
 import { Profile } from "components/pages";
 import { setCurrentAccount } from "store/actions";
+import { useStorageSetter } from "storage/hooks";
+import { signOut } from "api/auth";
+import SettingsDrawer from "components/common/SettingsDrawer";
+import { useAccount } from "api/hooks";
 
 // Component scoped imports.
 import translations from "./trans"
 import styles from "./styles";
-import { signOut } from "api/auth";
-import { useStorageSetter } from "storage/hooks";
-import SettingsDrawer from "components/common/SettingsDrawer";
 
 /**
  * Menu Popover
  * @description The popover showed when clicking on own profile picture.
  * @version 1.0.0
- * @author Mike Eling <mike.eling97@gmail.com>
  */
 const MenuPopover = (props: MenuPopoverProps) => {
     const [translated] = useLittera(translations);
@@ -35,7 +34,7 @@ const MenuPopover = (props: MenuPopoverProps) => {
     const openProfileDrawer = () => setShownProfileDrawer(true);
     const closeProfileDrawer = () => setShownProfileDrawer(false);
 
-    const currentAccount = useStore(state => state.currentAccount);
+    const currentAccount = useAccount();
 
     const [anchorEl, setAnchorEl] = React.useState<HTMLElement | null>(null);
 
@@ -50,8 +49,6 @@ const MenuPopover = (props: MenuPopoverProps) => {
     const open = Boolean(anchorEl);
     const id = open ? 'profile-popover' : undefined;
 
-    const accountFullName = makeFullName(currentAccount?.details?.first_name, currentAccount?.details?.last_name, currentAccount?.label ?? "Unknown");
-
     const storageSetter = useStorageSetter();
     const storeDispatch = useDispatch();
 
@@ -63,7 +60,11 @@ const MenuPopover = (props: MenuPopoverProps) => {
     };
 
     return <>
-        <Avatar aria-describedby={id} className={classes.avatar} alt="user" src={currentAccount?.avatar_url} onClick={handleClick} />
+        {currentAccount &&
+            <Box className={classes.avatarWrapper}>
+                <Avatar variant="circle" aria-describedby={id} className={classes.avatar} alt={currentAccount?.name()} src={currentAccount?.avatar_url} onClick={handleClick} />
+            </Box>
+        }
 
         <Popover
             id={id}
@@ -87,8 +88,8 @@ const MenuPopover = (props: MenuPopoverProps) => {
         >
             <Box display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center">
                 <Box className={classes.header} display="flex" flexDirection="column" justifyContent="flex-start" alignItems="center">
-                    <Avatar className={classes.avatarBig} alt={accountFullName} src={currentAccount?.avatar_url} />
-                    <Typography variant="h5">{accountFullName}</Typography>
+                    <Avatar className={classes.avatarBig} alt={currentAccount?.name()} src={currentAccount?.avatar_url} />
+                    <Typography variant="h5">{currentAccount?.name()}</Typography>
                     <Typography style={{ opacity: 0.6 }}>{currentAccount?.contact?.email}</Typography>
                 </Box>
 

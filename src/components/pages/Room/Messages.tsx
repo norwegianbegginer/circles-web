@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect, useRef } from "react";
-import { Typography, Avatar } from "@material-ui/core";
+import { Typography, Avatar, Box } from "@material-ui/core";
 import { useMessages } from "api/messages";
 import { IAccount, IMessage } from "types";
 import { useStore } from "store/hooks";
@@ -60,12 +60,12 @@ const Message = ({ message, author, isOwned, displayAvatar, isOwnedNextMessage, 
     const authorFullName = makeFullName(author?.details?.first_name, author?.details?.last_name, author?.label ?? "Unknown")
     const authorInitials = makeInitials(author?.details?.first_name, author?.details?.last_name, author?.label ?? "Unknown")
 
-    return <Flex alignItems="flex-end" className={bubbleClasses} style={{ alignSelf: isOwned ? "flex-end" : "flex-start"}}>
-        {displayAvatar && !isOwned && author && <Avatar alt={authorFullName} className={classes.avatar} src={author.avatar_url}>{authorInitials}</Avatar>}
-        <div className={rootClasses} ref={ref}>
-            <ReactMarkdown source={value} />
-        </div>
-    </Flex>
+    return <Box alignItems="flex-end" className={bubbleClasses} style={{ alignSelf: isOwned ? "flex-end" : "flex-start" }}>
+            {displayAvatar && !isOwned && author && <Avatar alt={authorFullName} className={classes.avatar} src={author.avatar_url}>{authorInitials}</Avatar>}
+            <div className={rootClasses} ref={ref}>
+                <ReactMarkdown source={value} />
+            </div>
+    </Box>
 }
 
 export default Messages;

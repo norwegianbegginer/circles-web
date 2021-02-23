@@ -13,13 +13,10 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "10vh",
     display: "flex",
     flexDirection: "column",
+    color: "#FFF"
   },
   icon: {
-    color: "#fff",
     margin: "10px auto",
-  },
-  iconActive: {
-    color: theme.palette.primary.main
   }
 }));
 
