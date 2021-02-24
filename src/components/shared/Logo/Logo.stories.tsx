@@ -11,16 +11,6 @@ export default {
         style: { description: "Style passed to the root element.", control: 'object' },
         onClick: { description: "Callback used for handling clicks.", action: "clicked" }
     },
-    parameters: {
-        info: {
-            inline: true,
-            text: `
-            ~~~js
-                <Logo />
-            ~~~
-            `
-        },
-    },
 } as Meta;
 
 const Template: Story<LogoProps> = (args) => <Logo {...args} />;
