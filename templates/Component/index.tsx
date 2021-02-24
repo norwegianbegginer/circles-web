@@ -1,14 +1,14 @@
 // Deps scoped imports.
 import React from "react";
-import { makeStyles } from "@material-ui/core";
 import { useLittera } from "react-littera";
 import cx from "classnames";
 
 // Project scoped imports.
 
-// Component scoped imports.
-import { styles } from "./styles";
+// Component scoped imports. 
+import { useStyles } from "./styles";
 import { translations } from "./trans";
+import { ComponentProps } from './types';
 
 /**
  * Example component
@@ -23,15 +23,6 @@ const Component = (props: ComponentProps) => {
     return <div className={cx(classes.root, props.className)} style={props.style}>
         <h4 className={classes.h4}>{translated.example}</h4>
     </div>
-}
-
-// Creates a hook for generating classnames.
-const useStyles = makeStyles(styles);
-
-// Props the component accepts.
-type ComponentProps = {
-    className?: string;
-    style?: React.CSSProperties
 }
 
 // Time to export! 🚚
