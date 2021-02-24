@@ -2,8 +2,15 @@ import { TextField } from "@material-ui/core";
 import React from "react";
 import useStyles from "./styles";
 
+export type MessageInputProps = {
+    inputRef?: any;
+    value: string;
+    onChange: (event: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => void;
+    onSubmit?: () => void;
+};
+
 // TODO: ref type.
-const MessageInput = (props: { inputRef?: any, value: string, onChange: (event: React.FormEvent<HTMLTextAreaElement | HTMLInputElement>) => void, onSubmit?: () => void }) => {
+const MessageInput = (props: MessageInputProps) => {
     const classes = useStyles();
 
     const handleKeyPress = (event: React.KeyboardEvent<HTMLDivElement>) => {

@@ -3,7 +3,7 @@ import useStyles from "./styles";
 import { Route, useHistory } from 'react-router-dom';
 import { useStore } from 'store/hooks';
 import { backgroundThemes } from 'utils/backgroundThemes';
-import Menu from '../Menu';
+import Menu from '../../common/Menu';
 import TopMenu from 'components/common/TopMenu';
 
 const HighlightsLazy = React.lazy(() => import("../Highlights/"));

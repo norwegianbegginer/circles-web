@@ -2,7 +2,7 @@ import { Typography, TypographyProps } from "@material-ui/core";
 import useStyles from "./styles";
 import React from "react";
 
-type LogoProps = {
+export type LogoProps = {
     typographyProps?: TypographyProps,
     style?: Object
     onClick?: () => void;

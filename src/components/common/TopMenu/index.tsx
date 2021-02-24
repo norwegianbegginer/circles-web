@@ -5,7 +5,7 @@ import { useHistory } from "react-router-dom";
 
 // Project scoped imports.
 import MenuPopover from "./MenuPopover";
-import Logo from "../Logo";
+import Logo from "../../shared/Logo";
 import Flex from "components/utils/Flex";
 
 // Component scoped imports.
@@ -35,7 +35,7 @@ const TopMenu = (props: TopMenuProps) => {
 const useStyles = makeStyles(styles);
 
 // Props the component accepts.
-type TopMenuProps = {
+export type TopMenuProps = {
     className?: string;
     style?: React.CSSProperties
 }

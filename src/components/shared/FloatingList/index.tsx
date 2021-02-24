@@ -47,7 +47,7 @@ const FloatingList = (props: FloatingListProps) => {
 const useStyles = makeStyles(styles);
 
 // Props the component accepts.
-type FloatingListProps<D = any> = {
+export type FloatingListProps<D = any> = {
     className?: string;
     style?: React.CSSProperties;
 
